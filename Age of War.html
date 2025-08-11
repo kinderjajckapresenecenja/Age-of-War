@@ -1,77 +1,111 @@
 <!doctype html>
 <html lang="sl">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Age of War</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Age of War</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet">
 
-</head>
-<body>
-<header>
-  <h1>Age of War </h1>
-</header>
-<div id="gameWrap">
-  <div id="leftUI">
-    <div class="stat"><div>Gold</div><div id="gold">0</div></div>
-    <div class="stat"><div>XP</div><div id="xp">0 / 100</div></div>
-    <div class="progress" title="XP"><i id="xpBar" style="width:0%"></i></div>
+  </head>
+  <body>
+    <header>
+      <h1>Age of War </h1>
+    </header>
+    <div id="gameWrap">
+      <div id="leftUI">
+        <div class="stat"><div>Gold</div><div id="gold">0</div></div>
+        <div class="stat"><div>XP</div><div id="xp">0 / 100</div></div>
+        <div class="progress" title="XP"><i id="xpBar"
+            style="width:0%"></i></div>
 
-    <hr>
-    
-    <div>
-        <div class="ageName">Trenutno obdobje: <span id="ageLabel">Kamena doba</span></div>
-        <div class="stat"><div>Gold/sec</div><div id="goldRate">1</div></div>
-    </div>
+        <hr>
 
-    <div style="margin-top:16px">
-      <button id="upgradeAge">Napreduj v naslednje obdobje</button>
-    </div>
+        <div>
+          <div class="ageName">Trenutno obdobje: <span id="ageLabel">Kamena
+              doba</span></div>
+          <div class="stat"><div>Gold/sec</div><div id="goldRate">1</div></div>
+        </div>
 
-    <hr>
+        <div style="margin-top:16px">
+          <button id="upgradeAge">Napreduj v naslednje obdobje</button>
+        </div>
 
-    <div>
-      <div style="font-weight:700;margin-bottom:12px;font-size:16px;">Posebni napadi</div>
-      <div class="special">
-        <div style="display:flex;gap:8px;align-items:center"><button id="sp1">Meteor (200g)</button><div style="font-size:13px;color:var(--text-muted)">Uniči skupino sovražnikov</div></div>
-        <div style="display:flex;gap:8px;align-items:center"><button id="sp2">Zmaji (300g)</button><div style="font-size:13px;color:var(--text-muted)">Ogenj čez pol zaslona</div></div>
-        <div style="display:flex;gap:8px;align-items:center"><button id="sp3">Tornado (400g)</button><div style="font-size:13px;color:var(--text-muted)">Potisne nazaj</div></div>
-        <div style="display:flex;gap:8px;align-items:center"><button id="sp4">Air Strike (600g)</button><div style="font-size:13px;color:var(--text-muted)">Masivna škoda</div></div>
-        <div style="display:flex;gap:8px;align-items:center"><button id="sp5">Alien Attack (1000g)</button><div style="font-size:13px;color:var(--text-muted)">Velik meteorski dež</div></div>
+        <hr>
+
+        <div>
+          <div
+            style="font-weight:700;margin-bottom:12px;font-size:16px;">Posebni
+            napadi</div>
+          <div class="special">
+            <div style="display:flex;gap:8px;align-items:center"><button
+                id="sp1">Meteor (200g)</button><div
+                style="font-size:13px;color:var(--text-muted)">Uniči skupino
+                sovražnikov</div></div>
+            <div style="display:flex;gap:8px;align-items:center"><button
+                id="sp2">Zmaji (300g)</button><div
+                style="font-size:13px;color:var(--text-muted)">Ogenj čez pol
+                zaslona</div></div>
+            <div style="display:flex;gap:8px;align-items:center"><button
+                id="sp3">Tornado (400g)</button><div
+                style="font-size:13px;color:var(--text-muted)">Potisne
+                nazaj</div></div>
+            <div style="display:flex;gap:8px;align-items:center"><button
+                id="sp4">Air Strike (600g)</button><div
+                style="font-size:13px;color:var(--text-muted)">Masivna
+                škoda</div></div>
+            <div style="display:flex;gap:8px;align-items:center"><button
+                id="sp5">Alien Attack (1000g)</button><div
+                style="font-size:13px;color:var(--text-muted)">Velik meteorski
+                dež</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="canvasWrap">
+        <canvas id="gameCanvas" width="800" height="480"></canvas>
+        <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
+          <div style="flex:1">
+            <div style="font-weight:700; font-size:16px;">Izberi enoto za
+              pošiljanje</div>
+            <div id="unitButtons" class="unitsRow"
+              style="margin-top: 8px; display:flex; flex-wrap:wrap; gap:8px;"></div>
+          </div>
+          <div
+            style="width:260px; border-left: 1px solid var(--panel-border); padding-left: 12px;">
+            <div style="font-weight:700; font-size:16px;">Obramba</div>
+            <div class="stat"><div>Stolp nivo</div><div
+                id="towerLevel">1</div></div>
+            <div class="stat"><div>HP stolpa</div><div
+                id="towerHP">100</div></div>
+            <div style="margin-top:8px"><button id="upgradeTower">Nadgradi stolp
+                (100g)</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="rightUI">
+        <div style="font-weight:700; font-size:16px;">Sovražnikova baza</div>
+        <div class="stat"><div>HP</div><div id="enemyBaseHP">1000</div></div>
+        <div
+          style="margin-top:16px;color:var(--text-muted);font-size:14px; line-height: 1.6;">Pošlji
+          enote, upravljaj zlato in XP. Cilj: uničiti sovražnikovo bazo in
+          napredovati skozi obdobja.</div>
       </div>
     </div>
-  </div>
 
-  <div id="canvasWrap">
-    <canvas id="gameCanvas" width="800" height="480"></canvas>
-    <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
-      <div style="flex:1">
-        <div style="font-weight:700; font-size:16px;">Izberi enoto za pošiljanje</div>
-        <div id="unitButtons" class="unitsRow" style="margin-top: 8px; display:flex; flex-wrap:wrap; gap:8px;"></div>
-      </div>
-      <div style="width:260px; border-left: 1px solid var(--panel-border); padding-left: 12px;">
-        <div style="font-weight:700; font-size:16px;">Obramba</div>
-        <div class="stat"><div>Stolp nivo</div><div id="towerLevel">1</div></div>
-        <div class="stat"><div>HP stolpa</div><div id="towerHP">100</div></div>
-        <div style="margin-top:8px"><button id="upgradeTower">Nadgradi stolp (100g)</button></div>
-      </div>
-    </div>
-  </div>
+    <div id="overlay"><div class="box"><div id="overlayText"></div><button
+          id="overlayBtn">Restart</button></div></div>
+    <div id="toast"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <script src="script.js"></script>
 
-  <div id="rightUI">
-    <div style="font-weight:700; font-size:16px;">Sovražnikova baza</div>
-    <div class="stat"><div>HP</div><div id="enemyBaseHP">1000</div></div>
-    <div style="margin-top:16px;color:var(--text-muted);font-size:14px; line-height: 1.6;">Pošlji enote, upravljaj zlato in XP. Cilj: uničiti sovražnikovo bazo in napredovati skozi obdobja.</div>
-  </div>
-</div>
-
-<div id="overlay"><div class="box"><div id="overlayText"></div><button id="overlayBtn">Restart</button></div></div>
-<div id="toast"></div>
-<script src="script.js"></script>
-</body>
+  </body>
 </html>
