@@ -15,9 +15,17 @@
   }
 }
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('JungleAdventurer.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --bg-start: #b7eaff;
-  --bg-end: #eec822;
+  --bg-start:#f5e59e;
+  --bg-end:  #ec884e;
   --panel-bg: rgba(15, 117, 11, 0.6);
   --panel-border: rgba(97, 209, 125, 0.15);
   --accent-primary: #f97316;
@@ -57,13 +65,17 @@ header {
 
 h1 {
   margin: 0;
-  font-size: 30px;
-  font-weight: 700;
-  color:brown;
+  font-size: 40px;
+  font-weight: 500;
+  color:rgb(245, 98, 0);
 }
 
 h1>span {
   color: var(--accent-primary);
+}
+
+h1.game-title {
+  font-family: 'MyFont', 'Poppins', sans-serif;
 }
 
 #gameWrap {
